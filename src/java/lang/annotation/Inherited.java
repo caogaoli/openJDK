@@ -51,3 +51,8 @@ package java.lang.annotation;
 @Target(ElementType.ANNOTATION_TYPE)
 public @interface Inherited {
 }
+/**
+ * 注解的继承：
+ * (1)注解的继承是相对于类而言的，对于接口时无效;
+ * (2)注解只继承父类注解，不继承方法的注解;
+ */

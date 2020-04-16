@@ -56,6 +56,8 @@ import java.lang.annotation.AnnotationFormatError;
  *
  * @author      Kenneth Russell
  * @author      Nakul Saraiya
+ *
+ * 主要提供构造方法的信息.
  */
 public final class Constructor<T> extends Executable {
     private Class<T>            clazz;
@@ -357,10 +359,10 @@ public final class Constructor<T> extends Executable {
     /**
      * Uses the constructor represented by this {@code Constructor} object to
      * create and initialize a new instance of the constructor's
-     * declaring class, with the specified initialization parameters.
+     * declaring class, with the specified[adj. 规定的；详细说明的/ v. 指定；详细说明] initialization parameters.
      * Individual parameters are automatically unwrapped to match
-     * primitive formal parameters, and both primitive and reference
-     * parameters are subject to method invocation conversions as necessary.
+     * primitive[原始的] formal parameters, and both primitive and reference
+     * parameters are subject to method invocation[调用] conversions[转化] as necessary.
      *
      * <p>If the number of formal parameters required by the underlying constructor
      * is 0, the supplied {@code initargs} array may be of length 0 or null.

@@ -56,7 +56,7 @@ class Array {
      * </blockquote>
      *
      * <p>The number of dimensions of the new array must not
-     * exceed 255.
+     * exceed 255. 注意：有长度限制，length<=255.
      *
      * @param componentType the {@code Class} object representing the
      * component type of the new array

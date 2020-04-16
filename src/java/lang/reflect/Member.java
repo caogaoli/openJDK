@@ -28,13 +28,13 @@ package java.lang.reflect;
 /**
  * Member is an interface that reflects identifying information about
  * a single member (a field or a method) or a constructor.
+ * field/method/constructor.
  *
+ * @author Nakul Saraiya
  * @see java.lang.Class
  * @see Field
  * @see Method
  * @see Constructor
- *
- * @author Nakul Saraiya
  */
 public
 interface Member {
@@ -52,7 +52,7 @@ interface Member {
     public static final int DECLARED = 1;
 
     /**
-     * Returns the Class object representing the class or interface
+     * Returns the Class object representing[代表，表示，表现] the class or interface
      * that declares the member or constructor represented by this Member.
      *
      * @return an object representing the declaring class of the
@@ -87,6 +87,7 @@ interface Member {
      * the compiler.
      * @jls 13.1 The Form of a Binary
      * @since 1.5
+     * Synthetic: 综合的，合成的，人造的/ 合成物;
      */
     public boolean isSynthetic();
 }

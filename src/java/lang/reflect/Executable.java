@@ -110,6 +110,7 @@ public abstract class Executable extends AccessibleObject
         }
     }
 
+    // constructor和method 的toString() 会调用此方法.
     String sharedToString(int modifierMask,
                           boolean isDefault,
                           Class<?>[] parameterTypes,

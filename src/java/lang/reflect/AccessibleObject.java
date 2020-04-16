@@ -41,7 +41,7 @@ import java.lang.annotation.Annotation;
  * respectively.
  *
  * <p>Setting the {@code accessible} flag in a reflected object
- * permits sophisticated applications with sufficient privilege, such
+ * permits sophisticated[复杂的；精致的；久经世故的；富有经验的] applications with sufficient privilege, such
  * as Java Object Serialization or other persistence mechanisms, to
  * manipulate objects in a manner that would normally be prohibited.
  *
@@ -65,7 +65,7 @@ public class AccessibleObject implements AnnotatedElement {
         new ReflectPermission("suppressAccessChecks");
 
     /**
-     * Convenience method to set the {@code accessible} flag for an
+     * Convenience[n. 便利；厕所；便利的事物] method to set the {@code accessible} flag for an
      * array of objects with a single security check (for efficiency).
      *
      * <p>First, if there is a security manager, its
@@ -163,7 +163,7 @@ public class AccessibleObject implements AnnotatedElement {
     // Field, Method, and Constructor.
     //
     // NOTE: for security purposes, this field must not be visible
-    // outside this package.
+    // outside this package. 标志位 override 就是用来标记能否accessible.
     boolean override;
 
     // Reflection factory used by subclasses for creating field,

@@ -26,8 +26,9 @@
 package java.lang.annotation;
 
 /**
- * The constants of this enumerated type provide a simple classification of the
- * syntactic locations where annotations may appear in a Java program. These
+ * The constants[n. [数] 常量，[数] 常数；物理常数（constant的复数)]
+ * of this enumerated type provide a simple classification of the
+ * syntactic[adj. 句法的；语法的；依据造句法的] locations where annotations may appear in a Java program. These
  * constants are used in {@link Target java.lang.annotation.Target}
  * meta-annotations to specify where it is legal to write annotations of a
  * given type.

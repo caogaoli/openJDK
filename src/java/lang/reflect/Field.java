@@ -58,6 +58,8 @@ import sun.reflect.annotation.TypeAnnotationParser;
  *
  * @author Kenneth Russell
  * @author Nakul Saraiya
+ *
+ * AccessibleObject 类是Field、Method和Constructor 对象的基类.
  */
 public final
 class Field extends AccessibleObject implements Member {
@@ -213,6 +215,8 @@ class Field extends AccessibleObject implements Member {
      *
      * @return a {@code Class} object identifying the declared
      * type of the field represented by this object
+     *
+     * 获取属性申明时类型对象（返回class对象）
      */
     public Class<?> getType() {
         return type;
@@ -360,7 +364,8 @@ class Field extends AccessibleObject implements Member {
      * is wrapped in an object before being returned, otherwise it is
      * returned as is.
      *
-     * <p>If the field is hidden in the type of {@code obj},
+     * <p>If the fi
+     * eld is hidden in the type of {@code obj},
      * the field's value is obtained according to the preceding rules.
      *
      * @param obj object from which the represented field's value is
@@ -502,7 +507,7 @@ class Field extends AccessibleObject implements Member {
 
     /**
      * Gets the value of a static or instance field of type
-     * {@code short} or of another primitive type convertible to
+     * {@code short} or of another primitive[原始的] type convertible to
      * type {@code short} via a widening conversion.
      *
      * @param obj the object to extract the {@code short} value
