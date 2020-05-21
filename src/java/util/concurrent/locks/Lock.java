@@ -170,14 +170,14 @@ public interface Lock {
      * Acquires the lock.
      *
      * <p>If the lock is not available then the current thread becomes
-     * disabled for thread scheduling purposes and lies dormant until the
+     * disabled for thread scheduling purposes and lies dormant[休眠的，静止的，睡眠状态的，隐匿的] until the
      * lock has been acquired.
      *
      * <p><b>Implementation Considerations</b>
      *
-     * <p>A {@code Lock} implementation may be able to detect erroneous use
-     * of the lock, such as an invocation that would cause deadlock, and
-     * may throw an (unchecked) exception in such circumstances.  The
+     * <p>A {@code Lock} implementation may be able to detect erroneous[错误的，不正确的] use
+     * of the lock, such as an invocation[调用] that would cause deadlock, and
+     * may throw an (unchecked) exception in such circumstances[情况，环境，情形].  The
      * circumstances and the exception type must be documented by that
      * {@code Lock} implementation.
      */
@@ -187,8 +187,10 @@ public interface Lock {
      * Acquires the lock unless the current thread is
      * {@linkplain Thread#interrupt interrupted}.
      *
+     * <p>直接获取可用锁</p>
      * <p>Acquires the lock if it is available and returns immediately.
      *
+     * <p>问获得可用锁</p>
      * <p>If the lock is not available then the current thread becomes
      * disabled for thread scheduling purposes and lies dormant until
      * one of two things happens:
@@ -227,7 +229,7 @@ public interface Lock {
      *
      * @throws InterruptedException if the current thread is
      *         interrupted while acquiring the lock (and interruption
-     *         of lock acquisition is supported)
+     *         of lock acquisition is supported) [异常信息：当前线程在获得锁的前提下，而当前线程却被其它线程Interrupt.]
      */
     void lockInterruptibly() throws InterruptedException;
 
@@ -254,6 +256,7 @@ public interface Lock {
      *
      * This usage ensures that the lock is unlocked if it was acquired, and
      * doesn't try to unlock if the lock was not acquired.
+     * <p>keep note: 必须存在可用锁才可以获得锁，必须确保获取锁之后才可以进行unlock().</p>
      *
      * @return {@code true} if the lock was acquired and
      *         {@code false} otherwise
@@ -273,7 +276,7 @@ public interface Lock {
      * <li>The lock is acquired by the current thread; or
      * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
      * current thread, and interruption of lock acquisition is supported; or
-     * <li>The specified waiting time elapses
+     * <li>The specified waiting time elapses[消逝，时间过去]
      * </ul>
      *
      * <p>If the lock is acquired then the value {@code true} is returned.
@@ -325,7 +328,7 @@ public interface Lock {
      *
      * <p><b>Implementation Considerations</b>
      *
-     * <p>A {@code Lock} implementation will usually impose
+     * <p>A {@code Lock} implementation will usually impose[利用]
      * restrictions on which thread can release a lock (typically only the
      * holder of the lock can release it) and may throw
      * an (unchecked) exception if the restriction is violated.
