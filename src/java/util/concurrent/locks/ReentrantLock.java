@@ -154,6 +154,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
                 free = true;
                 setExclusiveOwnerThread(null);
             }
+            // 释放锁的最后，写volatile变量state.
             setState(c);
             return free;
         }
@@ -230,6 +231,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
          */
         protected final boolean tryAcquire(int acquires) {
             final Thread current = Thread.currentThread();
+            // 获取锁的开始，首先读取volatile变量state.
             int c = getState();
             if (c == 0) {
                 if (!hasQueuedPredecessors() &&

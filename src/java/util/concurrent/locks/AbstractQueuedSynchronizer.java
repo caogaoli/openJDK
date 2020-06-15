@@ -529,6 +529,7 @@ public abstract class AbstractQueuedSynchronizer
 
     /**
      * The synchronization state.
+     * state使用volatile修饰，维护同步状态，是ReentrantLock内存语义实现的关键.
      */
     private volatile int state;
 

@@ -57,6 +57,10 @@ import sun.misc.Unsafe;
  * @since 1.6
  * @author Doug Lea
  */
+
+/**
+ * AQS --> 是一个无任何抽象方法的抽象类.
+ */
 public abstract class AbstractQueuedLongSynchronizer
     extends AbstractOwnableSynchronizer
     implements java.io.Serializable {
@@ -79,7 +83,7 @@ public abstract class AbstractQueuedLongSynchronizer
     /**
      * Wait queue node class.
      *
-     * <p>The wait queue is a variant of a "CLH" (Craig, Landin, and
+     * <p>The wait queue[队列] is a variant of a "CLH" (Craig, Landin, and
      * Hagersten) lock queue. CLH locks are normally used for
      * spinlocks.  We instead use them for blocking synchronizers, but
      * use the same basic tactic of holding some of the control
@@ -107,7 +111,7 @@ public abstract class AbstractQueuedLongSynchronizer
      * demarcation from unqueued to queued. Similarly, dequeuing
      * involves only updating the "head". However, it takes a bit
      * more work for nodes to determine who their successors are,
-     * in part to deal with possible cancellation due to timeouts
+     * in part to deal with possible cancellation[消除，删除] due to timeouts
      * and interrupts.
      *
      * <p>The "prev" links (not used in original CLH locks), are mainly
@@ -307,6 +311,7 @@ public abstract class AbstractQueuedLongSynchronizer
 
     /**
      * The synchronization state.
+     * 同步状态.
      */
     private volatile long state;
 
