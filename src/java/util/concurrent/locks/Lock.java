@@ -167,6 +167,7 @@ import java.util.concurrent.TimeUnit;
 public interface Lock {
 
     /**
+     * 获取锁，调用该方法当前线会获取锁，当锁获得后，从该方法返回.
      * Acquires the lock.
      *
      * <p>If the lock is not available then the current thread becomes
@@ -184,6 +185,7 @@ public interface Lock {
     void lock();
 
     /**
+     * 可中断地获取锁，和lock()方法的不同之处在于该方法会响应中断，即在锁的获取中可以中断当前线程.
      * Acquires the lock unless the current thread is
      * {@linkplain Thread#interrupt interrupted}.
      *
@@ -258,6 +260,8 @@ public interface Lock {
      * doesn't try to unlock if the lock was not acquired.
      * <p>keep note: 必须存在可用锁才可以获得锁，必须确保获取锁之后才可以进行unlock().</p>
      *
+     * 尝试非阻塞地获取锁，调用该方法后立即返回，如果能够放获取则返回true，否则返回false.
+     *
      * @return {@code true} if the lock was acquired and
      *         {@code false} otherwise
      */
@@ -267,11 +271,11 @@ public interface Lock {
      * Acquires the lock if it is free within the given waiting time and the
      * current thread has not been {@linkplain Thread#interrupt interrupted}.
      *
-     * <p>If the lock is available this method returns immediately
+     * <p>If the lock is available this method returns immediately[立即、立刻；直接地]
      * with the value {@code true}.
      * If the lock is not available then
      * the current thread becomes disabled for thread scheduling
-     * purposes and lies dormant until one of three things happens:
+     * purposes and lies dormant[休眠的，静止的] until one of three things happens:
      * <ul>
      * <li>The lock is acquired by the current thread; or
      * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
@@ -291,7 +295,7 @@ public interface Lock {
      * interrupted status is cleared.
      *
      * <p>If the specified waiting time elapses then the value {@code false}
-     * is returned.
+     * is returned. 等待时间消耗完成，依旧没有获得锁，则立即返回，返回值为{@code false}.
      * If the time is
      * less than or equal to zero, the method will not wait at all.
      *
@@ -303,7 +307,7 @@ public interface Lock {
      * The programmer should be aware that this may be the case. An
      * implementation should document when this is the case.
      *
-     * <p>An implementation can favor responding to an interrupt over normal
+     * <p>An implementation can favor[v.较喜欢的；偏袒的；有利于] responding to an interrupt over normal
      * method return, or reporting a timeout.
      *
      * <p>A {@code Lock} implementation may be able to detect
@@ -316,6 +320,10 @@ public interface Lock {
      * @param unit the time unit of the {@code time} argument
      * @return {@code true} if the lock was acquired and {@code false}
      *         if the waiting time elapsed before the lock was acquired
+     * 超时地获取锁，当前线程以下3种情况下会返回：
+     * (1)当前线程在超时时间内获得了锁；
+     * (2)当前线程在超时时间内被中断；
+     * (3)超时时间结束，返回false.
      *
      * @throws InterruptedException if the current thread is interrupted
      *         while acquiring the lock (and interruption of lock
@@ -334,16 +342,21 @@ public interface Lock {
      * an (unchecked) exception if the restriction is violated.
      * Any restrictions and the exception
      * type must be documented by that {@code Lock} implementation.
+     *
+     * 释放锁
      */
     void unlock();
 
     /**
+     * 获取等待通知的组件，该组件和当前的锁绑定，当前线程只有获得了锁，才能调用该组件的wait()方法，
+     * 而调用后，当前线程将释放锁.
+     *
      * Returns a new {@link Condition} instance that is bound to this
      * {@code Lock} instance.
      *
      * <p>Before waiting on the condition the lock must be held by the
      * current thread.
-     * A call to {@link Condition#await()} will atomically release the lock
+     * A call to {@link Condition#await()} will atomically release the lock[自动释放锁]
      * before waiting and re-acquire the lock before the wait returns.
      *
      * <p><b>Implementation Considerations</b>
@@ -351,6 +364,9 @@ public interface Lock {
      * <p>The exact operation of the {@link Condition} instance depends on
      * the {@code Lock} implementation and must be documented by that
      * implementation.
+     *
+     * 获取等待通知组件，该组件和当前的锁绑定，当前线程只有获得了锁，才能调用该组件的wait()方法，
+     * 而调用后，当前线程释放锁.
      *
      * @return A new {@link Condition} instance for this {@code Lock} instance
      * @throws UnsupportedOperationException if this {@code Lock}

@@ -534,6 +534,7 @@ public abstract class AbstractQueuedSynchronizer
     private volatile int state;
 
     /**
+     * 获取当前同步状态.
      * Returns the current value of synchronization state.
      * This operation has memory semantics of a {@code volatile} read.
      * @return current state value
@@ -543,6 +544,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 设置当前同步状态.
      * Sets the value of synchronization state.
      * This operation has memory semantics of a {@code volatile} write.
      * @param newState the new state value
@@ -552,6 +554,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 使用CAS设置当前状态，该方法能够保证状态设置的原子性.
      * Atomically sets synchronization state to the given updated
      * value if the current state value equals the expected value.
      * This operation has memory semantics of a {@code volatile} read
@@ -1048,6 +1051,9 @@ public abstract class AbstractQueuedSynchronizer
     // Main exported methods
 
     /**
+     * 独占式获取同步状态，实现该方法需要查询当前状态并判断同步状态是否符合预期，然后再进行CAS设置同步状态.
+     * java.util.concurrent.locks.AbstractQueuedSynchronizer#tryAcquire(int)
+     *
      * Attempts to acquire in exclusive mode. This method should query
      * if the state of the object permits it to be acquired in the
      * exclusive mode, and if so to acquire it.
@@ -1078,6 +1084,8 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 独占式释放同步状态，等待获取同步状态大的线程将有机会获取同步状态.
+     *
      * Attempts to set the state to reflect a release in exclusive
      * mode.
      *
@@ -1104,6 +1112,8 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 共享式获取同步状态，返回状态大于等于0的值，表示获取成功，反之，获取失败.
+     *
      * Attempts to acquire in shared mode. This method should query if
      * the state of the object permits it to be acquired in the shared
      * mode, and if so to acquire it.
@@ -1140,6 +1150,8 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 共享式释放同步状态.
+     *
      * Attempts to set the state to reflect a release in shared mode.
      *
      * <p>This method is always invoked by the thread performing release.
@@ -1165,7 +1177,9 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
-     * Returns {@code true} if synchronization is held exclusively with
+     * 当前同步器是否在独占模式下被线程占用，一般该方法表示是否被当前线程所独占.
+     *
+     * Returns {@code true} if synchronization is held[v.握住；举起，抬起；展示；提出] exclusively with
      * respect to the current (calling) thread.  This method is invoked
      * upon each call to a non-waiting {@link ConditionObject} method.
      * (Waiting methods instead invoke {@link #release}.)
@@ -1611,7 +1625,7 @@ public abstract class AbstractQueuedSynchronizer
      * {@code "nonempty"} or {@code "empty"} depending on whether the
      * queue is empty.
      *
-     * @return a string identifying this synchronizer, as well as its state
+
      */
     public String toString() {
         int s = getState();
@@ -2285,6 +2299,10 @@ public abstract class AbstractQueuedSynchronizer
      * CAS head field. Used only by enq.
      */
     private final boolean compareAndSetHead(Node update) {
+        /**
+         * sun.misc.Unsafe#compareAndSwapObject(java.lang.Object, long, java.lang.Object, java.lang.Object)
+         * 若期望值y
+         */
         return unsafe.compareAndSwapObject(this, headOffset, null, update);
     }
 

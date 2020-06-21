@@ -38,6 +38,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.Date;
 
 /**
+ * Condition是java1.5中出现的，它用来替代传统的Object的wait()、notify()实现线程间的协作,
+ * 相比使用Object的wait()、notify(),使用Condition的await()、signal()这种方法实现线程间协作更加安全和高效.
+ *
+ * Condition 是接口，基本方法就是await()和signal() 方法.
+ * Condition 依赖于Lock接口，生成一个condition的基本代码是lock.newCondition().
+ * 调用Condition的await()和signal()方法，都必须在lock保护之内，就是说必须在lock.lock()和lock.unlock()之间.
+ *
  * {@code Condition} factors out the {@code Object} monitor
  * methods ({@link Object#wait() wait}, {@link Object#notify notify}
  * and {@link Object#notifyAll notifyAll}) into distinct objects to
